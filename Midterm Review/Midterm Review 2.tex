@@ -1,0 +1,331 @@
+\documentclass[11pt]{exam}
+\newcommand{\myname}{Jackson Eshbaugh}
+\newcommand{\myemail}{eshbaugj}
+\newcommand{\myhwtype}{Midterm Review}
+\newcommand{\myhwnum}{2}
+\newcommand{\myclass}{CS 105}
+\newcommand{\mylecture}{1}
+\newcommand{\mysection}{}
+
+% Prefix for numedquestion's
+\newcommand{\questiontype}{Question}
+
+% Use this if your "written" questions are all under one section
+% For example, if the homework handout has Section 5: Written Questions
+% and all questions are 5.1, 5.2, 5.3, etc. set this to 5
+% Use for 0 no prefix. Redefine as needed per-question.
+\newcommand{\writtensection}{0}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{fancyvrb}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{framed}
+\usepackage{parcolumns}
+
+\usepackage{centernot}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\card}{\vert}{\vert}
+
+% Uncomment the following line to get Solarized-themed source listings
+% You will have had to already installed the solarized-light package
+% https://github.com/jez/latex-solarized
+%
+%\usepackage{solarized-light}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\pagestyle{empty}
+
+\def\indented#1{\list{}{}\item[]}
+\let\indented=\endlist
+
+\newcounter{questionCounter}
+\newcounter{partCounter}[questionCounter]
+
+\newenvironment{namedquestion}[1][\arabic{questionCounter}]{%
+    \addtocounter{questionCounter}{1}%
+    \setcounter{partCounter}{0}%
+    \vspace{.2in}%
+    \noindent{\bf #1}%
+    \vspace{0.3em} \hrule \vspace{.1in}%
+}{}
+
+\newenvironment{numedquestion}[0]{%
+    \stepcounter{questionCounter}%
+    \vspace{.2in}%
+    \ifx
+        \writtensection\undefined
+        \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+    \else
+        \if
+            \writtensection0
+            \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+        \else
+            \noindent{\bf \questiontype \; \writtensection.\arabic{questionCounter} }%
+        \fi
+        \vspace{0.3em} \hrule \vspace{.1in}%
+        }{}
+
+\newenvironment{alphaparts}[0]{%
+    \begin{enumerate}[label=\textbf{(\alph*)}]
+    }{\end{enumerate}}
+
+\newenvironment{arabicparts}[0]{%
+    \begin{enumerate}[label=\textbf{\arabic{questionCounter}.\arabic*})]
+    }{\end{enumerate}}
+
+\newenvironment{questionpart}[0]{%
+    \item
+    }{}
+
+\newcommand{\answerbox}[1]{
+    \begin{framed}
+    \vspace{#1}
+    \end{framed}}
+
+\pagestyle{head}
+
+\headrule
+\header{\textbf{\myclass\ \mylecture\mysection}}%
+{\textbf{\myname\ }}%
+{\textbf{\myhwtype\ \myhwnum}}
+
+\begin{document}
+    \thispagestyle{plain}
+    \begin{center}
+    {\Large \myclass{} \myhwtype{} \myhwnum}
+        \\
+        \myname{}\\
+        \today
+    \end{center}
+
+    \begin{numedquestion}
+        For each of the following, take the English and convert it into Processing conditionals.
+        Anything written in \texttt{teletype text} is a variable or function that you can use.
+        \begin{alphaparts}
+
+            \item If the mouse is in the box (given by boolean \texttt{mouseInBox}), then make the box rainbow-colored (using \texttt{rainbow()}, a function that was implemented for you for this task).
+            \answerbox{3cm}
+            \item If the \texttt{float temperature} is below 32, print "Freezing."
+            If it's between 32 and 50, print "Cold." Otherwise, print "Warm."
+            \answerbox{3cm}
+            \item If the mouse is in the box (\texttt{x} = 50, \texttt{y} = 25, \texttt{width} = 75, \texttt{height} = 80), draw a point at the mouse's location (assume all Processing variables are available).
+            \answerbox{3cm}
+        \end{alphaparts}
+    \end{numedquestion}
+    \pagebreak
+    \begin{numedquestion}
+        Consider the following code.
+        Respond to each part below.
+        \begin{lstlisting}[language=Java]
+            int score = 85;
+            if (score >= 90) {
+              println("A");
+            } else if (score >= 80) {
+              println("B");
+            } else {
+              println("C");
+            }
+        \end{lstlisting}
+
+        \begin{alphaparts}
+            \item What is the output of the code?
+            \vspace{3cm}
+            \item If the first line was changed to \texttt{int score = 46;}, what would the output be?
+            \vspace{3cm}
+            \item If the first line was changed to \texttt{int score = 97;}, what would the output be?
+            \vspace{3cm}
+            \item If the first line was changed to \texttt{int score = true;}, what would the output be?
+            \vspace{3cm}
+        \end{alphaparts}
+    \end{numedquestion}
+    \pagebreak
+    \begin{numedquestion}
+        Consider the following code.
+        Respond to each part below.
+        \begin{lstlisting}[language=Java]
+            int a = 35;
+
+            if(a % 2 == 0) {
+            println("Even!");
+            } else {
+                println("Odd!");
+                if(a % 5 == 0) {
+                    println("5!");
+                }
+            }
+        \end{lstlisting}
+
+        \begin{alphaparts}
+            \item What is the output of the code?
+            \vspace{2cm}
+            \item If the first line was changed to \texttt{int a = 23;}, what would the output be?
+            \vspace{2cm}
+            \item If the first line was changed to \texttt{int a = 72;}, what would the output be?
+            \vspace{2cm}
+            \item If the first line was changed to \texttt{int a = 50;}, what would the output be?
+            \vspace{2cm}
+        \end{alphaparts}
+    \end{numedquestion}
+
+    \pagebreak
+    \begin{numedquestion}
+        For each of the following, determine if the loop runs 0 times, a finite number of times, or an infinite number of times.
+        \begin{parcolumns}[colwidths={1=.6\textwidth, 2=.35\textwidth}]{2}
+            \colchunk{
+                \begin{lstlisting}[language=Java]
+                    int i = 0;
+                    while(i < 5) {
+                        println(i);
+                        i--;
+                        i++;
+                    }
+                \end{lstlisting}
+            }
+            \colchunk{
+                \begin{choices}
+                    \choice 0 times
+                    \choice finite number of times
+                    \choice infinite number of times
+                \end{choices}
+            }
+        \end{parcolumns}
+        \vspace{2cm}
+        \begin{parcolumns}[colwidths={1=.6\textwidth, 2=.35\textwidth}]{2}
+            \colchunk{
+                \begin{lstlisting}[language=Java]
+                    while(false){
+                        println("yay!");
+                      }
+                \end{lstlisting}
+            }
+            \colchunk{
+                \begin{choices}
+                    \choice 0 times
+                    \choice finite number of times
+                    \choice infinite number of times
+                \end{choices}
+            }
+        \end{parcolumns}
+        \vspace{2cm}
+        \begin{parcolumns}[colwidths={1=.6\textwidth, 2=.35\textwidth}]{2}
+            \colchunk{
+                \begin{lstlisting}[language=Java]
+                    int i = 0;
+                      while(i < 5) {
+                        println(i);
+                        i += 2;
+                      }
+                \end{lstlisting}
+            }
+            \colchunk{
+                \begin{choices}
+                    \choice 0 times
+                    \choice finite number of times
+                    \choice infinite number of times
+                \end{choices}
+            }
+        \end{parcolumns}
+        \vspace{2cm}
+        \begin{parcolumns}[colwidths={1=.6\textwidth, 2=.35\textwidth}]{2}
+            \colchunk{
+                \begin{lstlisting}[language=Java]
+                    int i = 0;
+                      while(i > -10) {
+                        println(i);
+                        i -= 2;
+                      }
+                \end{lstlisting}
+            }
+            \colchunk{
+                \begin{choices}
+                    \choice 0 times
+                    \choice finite number of times
+                    \choice infinite number of times
+                \end{choices}
+            }
+        \end{parcolumns}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        For each of the following loops, write a for loop that performs the exact same tasks as the given loop.
+        \begin{lstlisting}[language=Java]
+                      int i = 0;
+                      while(i < 5) {
+                        println(i);
+                        rect(width/2 * i, height/2 * i, 15, 15);
+                        i += 2;
+                      }
+        \end{lstlisting}
+        \vspace{.5cm}
+        \answerbox{3cm}
+        \vspace{.5cm}
+        \begin{lstlisting}[language=Java]
+                      int i = 0;
+                      while(i > - 10) {
+                        println(i);
+                        mySuperAwesomeCoolFunction3(i);
+                        i -= 2;
+                      }
+        \end{lstlisting}
+        \vspace{.5cm}
+        \answerbox{3cm}
+    \end{numedquestion}
+    \pagebreak
+    \begin{numedquestion}
+        Let's trace some loops!
+        For each loop given below, give its output, along with the final values of all variables.
+        \begin{lstlisting}[language=Java]
+            int total = 0;
+            for (int i = 1; i <= 5; i++) {
+              if (i % 2 == 0) {
+                total += i;
+              }
+              println("i = " + i + ", total = " + total);
+            }
+        \end{lstlisting}
+        \vspace{.5cm}
+        \begin{parcolumns}[1=.75\textwidth, 2=.25\textwidth]{2}
+            \colchunk{
+                \textbf{Console}
+                \answerbox{4cm}
+            }
+            \colchunk{
+                \textbf{Variables}
+                \answerbox{4cm}
+            }
+        \end{parcolumns}
+        \vspace{1cm}
+        \begin{lstlisting}[language=Java]
+            for (int i = 1; i <= 5; i++) {
+              for (int j = 1; j <= i; j++) {
+                print(j + " ");
+              }
+              println();  // new line
+            }
+        \end{lstlisting}
+        \vspace{1cm}
+        \begin{parcolumns}[1=.75\textwidth, 2=.25\textwidth]{2}
+            \colchunk{
+                \textbf{Console}
+                \answerbox{4cm}
+            }
+            \colchunk{
+                \textbf{Variables}
+                \answerbox{4cm}
+            }
+        \end{parcolumns}
+    \end{numedquestion}
+
+\end{document}

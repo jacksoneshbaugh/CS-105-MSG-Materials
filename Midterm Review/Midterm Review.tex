@@ -1,0 +1,282 @@
+\documentclass[11pt]{exam}
+\newcommand{\myname}{Jackson Eshbaugh}
+\newcommand{\myemail}{jezimmer}
+\newcommand{\myhwtype}{Midterm Review}
+\newcommand{\myhwnum}{1}
+\newcommand{\myclass}{CS 105}
+\newcommand{\mylecture}{1}
+\newcommand{\mysection}{}
+
+% Prefix for numedquestion's
+\newcommand{\questiontype}{Question}
+
+% Use this if your "written" questions are all under one section
+% For example, if the homework handout has Section 5: Written Questions
+% and all questions are 5.1, 5.2, 5.3, etc. set this to 5
+% Use for 0 no prefix. Redefine as needed per-question.
+\newcommand{\writtensection}{0}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{fancyvrb}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{booktabs}
+
+\usepackage{centernot}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\card}{\vert}{\vert}
+
+% Uncomment the following line to get Solarized-themed source listings
+% You will have had to already installed the solarized-light package
+% https://github.com/jez/latex-solarized
+%
+%\usepackage{solarized-light}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\pagestyle{empty}
+
+\def\indented#1{\list{}{}\item[]}
+\let\indented=\endlist
+
+\newcounter{questionCounter}
+\newcounter{partCounter}[questionCounter]
+
+\newenvironment{namedquestion}[1][\arabic{questionCounter}]{%
+    \addtocounter{questionCounter}{1}%
+    \setcounter{partCounter}{0}%
+    \vspace{.2in}%
+    \noindent{\bf #1}%
+    \vspace{0.3em} \hrule \vspace{.1in}%
+}{}
+
+\newenvironment{numedquestion}[0]{%
+    \stepcounter{questionCounter}%
+    \vspace{.2in}%
+    \ifx\writtensection\undefined
+    \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+    \else
+        \if\writtensection0
+        \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+        \else
+            \noindent{\bf \questiontype \; \writtensection.\arabic{questionCounter} }%
+        \fi
+        \vspace{0.3em} \hrule \vspace{.1in}%
+        }{}
+
+\newenvironment{alphaparts}[0]{%
+    \begin{enumerate}[label=\textbf{(\alph*)}]
+    }{\end{enumerate}}
+
+\newenvironment{arabicparts}[0]{%
+    \begin{enumerate}[label=\textbf{\arabic{questionCounter}.\arabic*})]
+    }{\end{enumerate}}
+
+\newenvironment{questionpart}[0]{%
+    \item
+    }{}
+
+\newcommand{\answerbox}[1]{
+    \begin{framed}
+    \vspace{#1}
+    \end{framed}}
+
+\pagestyle{head}
+
+\headrule
+\header{\textbf{\myclass\ \mylecture\mysection}}%
+{\textbf{\myname\ }}%
+{\textbf{\myhwtype\ \myhwnum}}
+
+\begin{document}
+    \thispagestyle{plain}
+    \begin{center}
+    {\Large \myclass{} \myhwtype{} \myhwnum} \\
+    \myname{}\\
+    \today
+    \end{center}
+
+    \begin{numedquestion}
+        What types of variables are there?
+        \\
+        \\
+        \\
+        \\
+        \\
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        Let's use \texttt{==} and \texttt{.equals()}.
+
+        \begin{alphaparts}
+            \item Are integers \texttt{x} and \texttt{y} equal?
+            \\
+            \\
+            \item Are Strings \texttt{str1} and \texttt{str2} equal?
+            \\
+            \\
+        \end{alphaparts}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        \begin{alphaparts}
+            \item Convert the statement "it is not raining outside" to a \texttt{boolean} in Java.
+            \\
+            \\
+            \item Convert the statement "it is raining outside" to a \texttt{boolean} in Java.
+            \\
+            \\
+        \end{alphaparts}
+    \end{numedquestion}
+
+    \pagebreak
+    \begin{numedquestion}
+        Complete the truth table for \texttt{a \&\& b}.
+        \begin{table}[H]
+            \centering
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l l l}
+                \toprule
+                \texttt{a}     & \texttt{b}     & \texttt{a \&\& b} \\ \midrule
+                \texttt{true}  & \texttt{true}  &                   \\
+                \texttt{true}  & \texttt{false} &                   \\
+                \texttt{false} & \texttt{true}  &                   \\
+                \texttt{false} & \texttt{false} &                   \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        Complete the truth table for \texttt{a || b}.
+        \begin{table}[H]
+            \centering
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l l l}
+                \toprule
+                \texttt{a}              & \texttt{b}              & \texttt{a || b} \\ \midrule
+                \texttt{true}  & \texttt{true}  &                   \\
+                \texttt{true}  & \texttt{false} &                   \\
+                \texttt{false} & \texttt{true}  &                   \\
+                \texttt{false} & \texttt{false} &                   \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        Complete the truth table for \texttt{!a}.
+        \begin{table}[H]
+            \centering
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l l}
+                \toprule
+                \texttt{a}     & \texttt{!a} \\ \midrule
+                \texttt{true}  &              \\
+                \texttt{false} &              \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        For each snippet of code, what is the output?
+        \begin{lstlisting}[language=Java]
+            boolean a = true;
+            boolean b = false;
+            println(!(a || b) && (a && !b));
+        \end{lstlisting}
+        \begin{lstlisting}[language=Java]
+            boolean x = false;
+            boolean y = true;
+            boolean z = false;
+            println((x || y) && !(y && z) || (!x && z));
+        \end{lstlisting}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        For each of the following, write the function header.
+        \begin{alphaparts}
+            \item Write a function that takes two integers and returns \texttt{true} if both integers are either positive or both are negative, and \texttt{false} otherwise.
+            \\
+            \\
+            \item Write a function \texttt{isLeapYear} that takes an integer year and returns \texttt{true} if it is a leap year, and \texttt{false} otherwise.
+            \\
+            \\
+            \item Write a function \textt{inRange} that takes two integers. Return true if one of the two numbers is in the range 10-20 (inclusive), but not both.
+            \\
+            \\
+        \end{alphaparts}
+    \end{numedquestion}
+
+    \begin{numedquestion}
+        For 8 (a) and (b), create a ground truth table that has a good range of test cases.
+        \begin{alphaparts}
+            \item Question 8 (a)
+            \\
+            \\
+            \\
+            \\
+            \\
+            \\
+            \item Question 8 (c)
+        \end{alphaparts}
+    \end{numedquestion}
+    \pagebreak
+    \begin{numedquestion}
+        Implement the function from either question 8 (a) or (c).
+        Do not do this on the computer, instead use paper and pencil (to better prepare for the exam).
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+        \\
+    \end{numedquestion}
+
+    Now that we've reviewed together, use the old midterms (on Moodle) to practice.
+    Ideally, we'll review those that you have already completed but have questions about.
+    Also, if you have anything you'd like me to hit on Sunday, \textbf{\textit{please let me know!}}
+    I already plan to cover conditionals, loops, and maybe some more functions, but please either tell me here or email me (\textit{eshbaugj@lafayette.edu}) if you want me to touch on anything specifically on Sunday.
+
+\end{document}
